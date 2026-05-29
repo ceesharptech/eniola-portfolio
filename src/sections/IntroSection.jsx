@@ -36,13 +36,19 @@ const IntroSection = () => {
       </p>
 
       <div className="flex flex-col md:flex-row items-start md:items-center gap-3 animate-rise delay-5">
-        <MainButton>Book a Call</MainButton>
+        <a
+          href="https://cal.com/eniola-amusu-lzh5bu"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <MainButton>Book a Call</MainButton>
+        </a>
         <button
           type="button"
           className="bg-[#55ff6f]/30 dark:bg-[#1c3d2b]/70 flex items-center justify-center gap-2 font-semibold text-[#0ea700] dark:text-[#7dff9a] text-sm lg:text-[15px] px-6 py-3 sm:px-6 sm:py-4 lg:px-7 lg:py-4 rounded-full transition-colors duration-150 tracking-tight"
         >
           <PulseIcon />
-          Available for new project
+          Available for new projects
         </button>
       </div>
     </div>

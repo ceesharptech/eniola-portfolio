@@ -50,7 +50,13 @@ const MobileMenu = ({ isOpen, onToggle, onClose, onNavClick, activeId }) => {
             )}
           </button>
         </div>
-        <MainButton>Book a Call</MainButton>
+        <a
+          href="https://cal.com/eniola-amusu-lzh5bu"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <MainButton>Book a Call</MainButton>
+        </a>
       </div>
 
       <div
