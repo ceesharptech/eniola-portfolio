@@ -4,7 +4,6 @@ import MobileMenu from "./sections/MobileMenu";
 import IntroSection from "./sections/IntroSection";
 import CarouselSection from "./sections/CarouselSection";
 import AboutSection from "./sections/AboutSection";
-import PictureCardsSection from "./sections/PictureCardsSection";
 import WorkExperience from "./sections/WorkExperience";
 import Projects from "./sections/Projects";
 import MyServices from "./sections/MyServices";
@@ -12,6 +11,7 @@ import Testimonials from "./sections/Testimonials";
 import Contact from "./sections/Contact";
 import Footer from "./sections/Footer";
 import NameHover from "./sections/NameHover";
+import TechStackGrid from "./sections/TechStackGrid";
 import { navItems } from "./data/navItems";
 import ThemeToggle from "./components/ThemeToggle";
 
@@ -60,7 +60,7 @@ const Portfolio = () => {
     sections.forEach((section) => observer.observe(section));
 
     return () => observer.disconnect();
-  }, [scrollTargets]);
+  }, [scrollTargets, pendingSection]);
 
   const scrollToSection = (sectionId) => {
     if (!sectionId) return;
@@ -103,9 +103,9 @@ const Portfolio = () => {
 
       <CarouselSection />
       <AboutSection />
-      <PictureCardsSection />
+      <TechStackGrid />
 
-      <div className="mt-20 w-full md:w-[50%] bg-gray-300 dark:bg-neutral-800 h-[1px]"></div>
+      <div className="mt-32 w-full md:w-[50%] bg-gray-300 dark:bg-neutral-800 h-[1px]"></div>
 
       <WorkExperience />
       <Projects />

@@ -11,7 +11,7 @@ const ServiceCard = ({ item, index }) => {
     <div
       ref={ref}
       style={{ transitionDelay: `${index * 90}ms` }}
-      className={`flex flex-col items-center md:items-start justify-between p-6 md:pl-8 gap-1 md:gap-4 bg-gray-100/40 dark:bg-neutral-900/60 border border-gray-200 dark:border-neutral-800 w-full h-44 lg:h-52 rounded-2xl shadow-sm scale-reveal ${
+      className={`flex flex-col items-center md:items-start justify-between p-6 md:pl-8 gap-1 md:gap-4 bg-gray-100/40 dark:bg-neutral-900/60 border border-gray-200 dark:border-neutral-800 w-full h-44 sm:h-56 lg:h-52 rounded-2xl shadow-sm scale-reveal ${
         isVisible ? "is-visible" : ""
       }`}
     >
@@ -22,7 +22,7 @@ const ServiceCard = ({ item, index }) => {
         </div>
       </div>
 
-      <span className="text-sm md:text-lg text-black/90 dark:text-neutral-100 font-semibold tracking-tighter">
+      <span className=" text-[clamp(0.85rem,2vw,1.1rem)] md:text-lg text-black/90 dark:text-neutral-100 font-semibold tracking-tighter">
         {item.name}
       </span>
     </div>
@@ -40,7 +40,7 @@ const MyServices = () => {
   });
 
   return (
-    <div className="flex flex-col items-center mt-20 gap-4 w-full max-w-2xl">
+    <div className="flex flex-col items-center mt-10 gap-4 w-full max-w-2xl">
       <div className="flex flex-col items-center gap-3 text-center">
         <h2
           ref={headingRef}

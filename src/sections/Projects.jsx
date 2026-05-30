@@ -41,7 +41,7 @@ const ProjectCard = ({ item, index }) => {
         isVisible ? "is-visible" : ""
       }`}
     >
-      <div className="bg-gray-300 dark:bg-neutral-800 w-full h-[240px] sm:h-[280px] md:h-[360px] lg:h-[440px] rounded-2xl p-4 sm:p-6 lg:p-8 shadow-md mb-4">
+      <div className="bg-gray-300 dark:bg-neutral-800 w-full aspect-[672/480] rounded-2xl p-4 sm:p-6 lg:p-8 shadow-md mb-4">
         <img
           src={item.image}
           alt={`${item.name} preview`}
@@ -114,7 +114,7 @@ const Projects = () => {
   return (
     <div
       id="projects"
-      className="mt-32 flex flex-col items-center gap-12 w-full"
+      className="mt-24 flex flex-col items-center gap-12 w-full"
     >
       <h2
         ref={ref}

@@ -8,7 +8,7 @@ const RenderCards = () => (
     {testimonialItems.map((item, index) => (
       <div
         key={`${item.id}-${index}`}
-        className="bg-gray-100/40 dark:bg-neutral-900/60 border-2 z-10 border-gray-100 dark:border-neutral-800 rounded-3xl w-[280px] sm:w-[320px] md:w-[320px] lg:w-[400px] p-6 shrink-0"
+        className="bg-gray-100/40 dark:bg-neutral-900/60 border-2 z-10 border-gray-100 dark:border-neutral-800 rounded-3xl w-[300px] sm:w-[320px] md:w-[320px] lg:w-[400px] p-6 shrink-0"
       >
         <div className="flex flex-col justify-between gap-8 h-full items-start">
           <p className="text-sm md:text-base font-normal text-gray-600 dark:text-gray-300 tracking-tight">

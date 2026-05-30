@@ -61,7 +61,7 @@ const MobileMenu = ({ isOpen, onToggle, onClose, onNavClick, activeId }) => {
 
       <div
         id="mobile-menu-panel"
-        className={`absolute left-0 top-[110%] w-full bg-white/90 dark:bg-neutral-900/95 backdrop-blur-xl border-2 border-gray-200 dark:border-neutral-800 rounded-3xl shadow-[0_10px_30px_rgba(0,0,0,0.08)] overflow-hidden transition-all duration-300 ease-in-out ${
+        className={`absolute left-0 top-[110%] w-full bg-white dark:bg-neutral-900/95 backdrop-blur-xl border-2 border-gray-200 dark:border-neutral-800 rounded-3xl shadow-[0_10px_30px_rgba(0,0,0,0.08)] overflow-hidden transition-all duration-300 ease-in-out ${
           isOpen
             ? "opacity-100 translate-y-0 max-h-96 p-3"
             : "opacity-0 -translate-y-2 max-h-0 p-0 pointer-events-none"
