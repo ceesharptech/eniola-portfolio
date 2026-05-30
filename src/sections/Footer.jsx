@@ -13,7 +13,7 @@ const Footer = () => {
   });
 
   return (
-    <div
+    <footer
       ref={ref}
       className="md:mt-1 mt-20 flex flex-col items-center w-full max-w-3xl mb-10"
     >
@@ -24,7 +24,7 @@ const Footer = () => {
             isVisible ? "is-visible" : ""
           }`}
         >
-          Copyright 2024 &copy; Eniola Amusu. All rights reserved
+          Copyright 2026 &copy; Eniola Amusu. All rights reserved
         </span>
 
         <div className="flex justify-center items-center gap-8 mt-8">
@@ -69,7 +69,7 @@ const Footer = () => {
           </a>
         </div>
       </div>
-    </div>
+    </footer>
   );
 };
 

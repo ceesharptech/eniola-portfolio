@@ -1,7 +1,25 @@
 import { Fragment } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { navItems } from "../data/navItems";
 import MainButton from "../components/MainButton";
 const FloatingNav = ({ activeId, onNavClick }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleItemClick = (item) => {
+    if (item.route && location.pathname !== item.route) {
+      if (item.scrollId) {
+        navigate(item.route, { state: { scrollTo: item.scrollId } });
+        return;
+      }
+      navigate(item.route);
+      return;
+    }
+
+    if (item.scrollId) {
+      onNavClick(item.scrollId);
+    }
+  };
   return (
     <div className="mt-10 hidden md:flex justify-center items-center backdrop-blur-md bg-white/70 dark:bg-neutral-900/70 border-2 border-gray-200 dark:border-neutral-800 rounded-3xl px-2 py-2 top-10 z-50 sticky transition-all duration-500 animate-nav delay-3">
       <div className="flex justify-between items-center gap-6 pl-2">
@@ -18,13 +36,18 @@ const FloatingNav = ({ activeId, onNavClick }) => {
               </div>
               <button
                 type="button"
-                className={`${activeId === item.scrollId ? "py-2 px-3" : "p-3"} hover:px-4 hover:bg-gray-100 dark:hover:bg-neutral-800 flex
+                className={`${
+                  activeId === item.scrollId || location.pathname === item.route
+                    ? "py-2 px-3"
+                    : "p-3"
+                } hover:px-4 hover:bg-gray-100 dark:hover:bg-neutral-800 flex
               flex-col items-center justify-center rounded-xl transition-all duration-300 text-gray-700 dark:text-gray-100`}
                 aria-label={item.label}
-                onClick={() => onNavClick(item.scrollId)}
+                onClick={() => handleItemClick(item)}
               >
                 {item.icon}
-                {item.scrollId && item.scrollId === activeId && (
+                {((item.scrollId && item.scrollId === activeId) ||
+                  (item.route && location.pathname === item.route)) && (
                   <div className="mt-1 bg-gray-800 dark:bg-gray-200 h-1 w-1 rounded-full"></div>
                 )}
               </button>

@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Menu04Icon, X } from "@hugeicons/core-free-icons";
 import { navItems } from "../data/navItems";
@@ -6,6 +7,8 @@ import MainButton from "../components/MainButton";
 
 const MobileMenu = ({ isOpen, onToggle, onClose, onNavClick, activeId }) => {
   const containerRef = useRef(null);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     if (!isOpen) return;
@@ -25,6 +28,23 @@ const MobileMenu = ({ isOpen, onToggle, onClose, onNavClick, activeId }) => {
       document.removeEventListener("touchstart", handlePointerDown);
     };
   }, [isOpen, onClose]);
+
+  const handleItemClick = (item) => {
+    if (item.route && location.pathname !== item.route) {
+      onClose();
+      if (item.scrollId) {
+        navigate(item.route, { state: { scrollTo: item.scrollId } });
+        return;
+      }
+      navigate(item.route);
+      return;
+    }
+
+    if (item.scrollId) {
+      onClose();
+      onNavClick(item.scrollId);
+    }
+  };
 
   return (
     <div
@@ -72,12 +92,13 @@ const MobileMenu = ({ isOpen, onToggle, onClose, onNavClick, activeId }) => {
             <li key={item.id}>
               <button
                 type="button"
-                onClick={() => onNavClick(item.scrollId)}
+                onClick={() => handleItemClick(item)}
                 className="flex items-center justify-start gap-3 py-3 px-3 rounded-xl hover:bg-gray-100 dark:hover:bg-neutral-800 transition-all duration-200 w-full text-gray-700 dark:text-gray-100"
               >
                 {item.icon}
                 <span className="text-md font-normal">{item.label}</span>
-                {item.scrollId && item.scrollId === activeId && (
+                {((item.scrollId && item.scrollId === activeId) ||
+                  (item.route && location.pathname === item.route)) && (
                   <span className="ml-auto bg-gray-800 dark:bg-gray-200 h-1.5 w-1.5 rounded-full"></span>
                 )}
               </button>

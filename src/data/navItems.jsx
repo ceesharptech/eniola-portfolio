@@ -12,12 +12,14 @@ export const navItems = [
     label: "Home",
     icon: <HugeiconsIcon icon={Home01Icon} className="w-5 h-5" />,
     scrollId: "home",
+    route: "/",
   },
   {
     id: "guestbook",
     label: "Guestbook",
     icon: <HugeiconsIcon icon={Book02Icon} className="w-5 h-5" />,
     scrollId: null,
+    route: "/guestbook",
   },
   {
     id: "projects",

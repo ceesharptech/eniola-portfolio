@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import FloatingNav from "./sections/FloatingNav";
 import MobileMenu from "./sections/MobileMenu";
 import IntroSection from "./sections/IntroSection";
@@ -21,6 +22,8 @@ const Portfolio = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [pendingSection, setPendingSection] = useState(null);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const scrollTargets = useMemo(
     () => navItems.map((item) => item.scrollId).filter(Boolean),
@@ -38,6 +41,13 @@ const Portfolio = () => {
       })
       .filter(Boolean);
   }, [scrollTargets]);
+
+  useEffect(() => {
+    const target = location.state?.scrollTo;
+    if (!target) return;
+    scrollToSection(target);
+    navigate("/", { replace: true, state: {} });
+  }, [location.state, navigate]);
 
   useEffect(() => {
     if (sectionsRef.current.length === 0) return;
