@@ -38,7 +38,7 @@ const Footer = () => {
               className={`w-6 h-6 text-gray-700 dark:text-gray-200 hover:cursor-pointer hover:rotate-6 hover:scale-110 transition-all duration-200 icon-reveal ${
                 isVisible ? "is-visible" : ""
               }`}
-              style={{ transitionDelay: isVisible ? "140ms" : "0ms" }}
+              style={{ animationDelay: isVisible ? "140ms" : "0ms" }}
             />
           </a>
           <a
@@ -51,7 +51,7 @@ const Footer = () => {
               className={`w-6 h-6 text-gray-700 dark:text-gray-200 hover:cursor-pointer hover:rotate-6 hover:scale-110 transition-all duration-200 icon-reveal ${
                 isVisible ? "is-visible" : ""
               }`}
-              style={{ transitionDelay: isVisible ? "260ms" : "0ms" }}
+              style={{ animationDelay: isVisible ? "260ms" : "0ms" }}
             />
           </a>
           <a
@@ -64,7 +64,7 @@ const Footer = () => {
               className={`w-6 h-6 text-gray-700 dark:text-gray-200 hover:cursor-pointer hover:rotate-6 hover:scale-110 transition-all duration-200 icon-reveal ${
                 isVisible ? "is-visible" : ""
               }`}
-              style={{ transitionDelay: isVisible ? "380ms" : "0ms" }}
+              style={{ animationDelay: isVisible ? "380ms" : "0ms" }}
             />
           </a>
         </div>

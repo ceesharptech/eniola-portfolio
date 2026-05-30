@@ -87,7 +87,7 @@ const TechStackGrid = () => {
               onFocus={() => setActiveId(item.id)}
               onBlur={() => setActiveId(null)}
               aria-label={item.name}
-              className={`relative flex items-center justify-center rounded-2xl border border-gray-200/80 dark:border-neutral-800/80 bg-white/80 dark:bg-neutral-900/80 p-6 shadow-sm transition-colors duration-300 scale-reveal ${
+              className={`relative flex items-center justify-center rounded-2xl border border-gray-300/80 dark:border-neutral-800/80 bg-white/80 dark:bg-neutral-900/80 p-6 shadow-sm transition-colors duration-300 scale-reveal ${
                 gridVisible ? "is-visible" : ""
               } ${isActive ? "shadow-lg shadow-blue-500/20" : ""}`}
               style={{

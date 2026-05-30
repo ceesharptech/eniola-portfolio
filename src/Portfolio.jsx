@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import FloatingNav from "./sections/FloatingNav";
 import MobileMenu from "./sections/MobileMenu";
 import IntroSection from "./sections/IntroSection";
@@ -27,40 +27,75 @@ const Portfolio = () => {
     [],
   );
 
+  const sectionsRef = useRef([]);
+
   useEffect(() => {
-    const sections = scrollTargets
-      .map((id) => document.getElementById(id))
+    sectionsRef.current = scrollTargets
+      .map((id) => {
+        const element = document.getElementById(id);
+        if (!element) return null;
+        return { id, element };
+      })
       .filter(Boolean);
+  }, [scrollTargets]);
 
-    if (sections.length === 0) return;
+  useEffect(() => {
+    if (sectionsRef.current.length === 0) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visibleEntries = entries.filter((entry) => entry.isIntersecting);
-        if (visibleEntries.length === 0) return;
+    let animationFrame = null;
+    const updateActiveSection = () => {
+      animationFrame = null;
+      const scrollPosition = window.scrollY + NAV_OFFSET + 1;
 
-        const bestEntry = visibleEntries.reduce((current, next) =>
-          current.intersectionRatio >= next.intersectionRatio ? current : next,
-        );
+      const sections = sectionsRef.current
+        .map(({ id, element }) => {
+          const rect = element.getBoundingClientRect();
+          const top = rect.top + window.scrollY;
+          const bottom = top + rect.height;
+          return { id, top, bottom };
+        })
+        .filter((section) => section.bottom > section.top);
 
-        if (pendingSection && bestEntry.target.id !== pendingSection) {
-          return;
-        }
+      if (sections.length === 0) return;
 
-        setActiveSection(bestEntry.target.id);
+      const pendingTarget = pendingSection
+        ? sections.find((section) => section.id === pendingSection)
+        : null;
+
+      if (pendingTarget && scrollPosition < pendingTarget.top) {
+        return;
+      }
+
+      const active = sections
+        .filter((section) => scrollPosition >= section.top)
+        .sort((a, b) => b.top - a.top)[0];
+
+      if (active && active.id !== activeSection) {
+        setActiveSection(active.id);
+      }
+
+      if (pendingTarget && scrollPosition >= pendingTarget.top) {
         setPendingSection(null);
-      },
-      {
-        root: null,
-        rootMargin: `-${NAV_OFFSET}px 0px -45% 0px`,
-        threshold: [0.1, 0.25, 0.5],
-      },
-    );
+      }
+    };
 
-    sections.forEach((section) => observer.observe(section));
+    const handleScroll = () => {
+      if (animationFrame !== null) return;
+      animationFrame = window.requestAnimationFrame(updateActiveSection);
+    };
 
-    return () => observer.disconnect();
-  }, [scrollTargets, pendingSection]);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll);
+
+    return () => {
+      if (animationFrame !== null) {
+        window.cancelAnimationFrame(animationFrame);
+      }
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, [activeSection, pendingSection]);
 
   const scrollToSection = (sectionId) => {
     if (!sectionId) return;
