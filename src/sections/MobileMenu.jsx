@@ -9,6 +9,10 @@ const MobileMenu = ({ isOpen, onToggle, onClose, onNavClick, activeId }) => {
   const containerRef = useRef(null);
   const navigate = useNavigate();
   const location = useLocation();
+  const visibleItems =
+    location.pathname === "/guestbook"
+      ? navItems.filter((item) => ["home", "guestbook"].includes(item.id))
+      : navItems;
 
   useEffect(() => {
     if (!isOpen) return;
@@ -88,7 +92,7 @@ const MobileMenu = ({ isOpen, onToggle, onClose, onNavClick, activeId }) => {
         }`}
       >
         <ul className="flex flex-col gap-2">
-          {navItems.map((item) => (
+          {visibleItems.map((item) => (
             <li key={item.id}>
               <button
                 type="button"

@@ -17,6 +17,7 @@ const createGuestbookEntry = async ({
   uid,
   photoURL,
   signature,
+  signatureTheme,
 }) => {
   const trimmedMessage = message?.trim();
   if (!trimmedMessage) {
@@ -33,6 +34,7 @@ const createGuestbookEntry = async ({
     uid: uid || null,
     photoURL: photoURL || null,
     signature: signature || null,
+    signatureTheme: signatureTheme || null,
     timestamp: serverTimestamp(),
   });
 };

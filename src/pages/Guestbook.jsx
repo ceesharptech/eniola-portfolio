@@ -27,6 +27,9 @@ const Guestbook = () => {
   const [hasSignature, setHasSignature] = useState(false);
   const [signatureDataUrl, setSignatureDataUrl] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(() =>
+    document.documentElement.classList.contains("dark"),
+  );
   const canvasRef = useRef(null);
   const messageRef = useRef(null);
   const isDrawingRef = useRef(false);
@@ -41,6 +44,15 @@ const Guestbook = () => {
 
     return () => unsubscribe();
   }, [auth]);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    const updateTheme = () => setIsDarkMode(root.classList.contains("dark"));
+    updateTheme();
+    const observer = new MutationObserver(updateTheme);
+    observer.observe(root, { attributes: true, attributeFilter: ["class"] });
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const unsubscribe = subscribeToGuestbookEntries(
@@ -236,12 +248,14 @@ const Guestbook = () => {
 
     setIsSubmitting(true);
     try {
+      const signatureTheme = isDarkMode ? "dark" : "light";
       await createGuestbookEntry({
         name: user?.displayName || "Anonymous",
         message: trimmedMessage,
         uid: user?.uid,
         photoURL: user?.photoURL,
         signature: signatureDataUrl,
+        signatureTheme,
       });
       setMessage("");
       clearSignature();
@@ -567,6 +581,14 @@ const Guestbook = () => {
                       src={entry.signature}
                       alt={`Signature from ${entry.name || "Guest"}`}
                       className="w-full h-16 object-contain"
+                      style={{
+                        filter:
+                          entry.signatureTheme &&
+                          entry.signatureTheme !==
+                            (isDarkMode ? "dark" : "light")
+                            ? "invert(1)"
+                            : "none",
+                      }}
                     />
                   </div>
                 )}

@@ -5,6 +5,10 @@ import MainButton from "../components/MainButton";
 const FloatingNav = ({ activeId, onNavClick }) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const visibleItems =
+    location.pathname === "/guestbook"
+      ? navItems.filter((item) => ["home", "guestbook"].includes(item.id))
+      : navItems;
 
   const handleItemClick = (item) => {
     if (item.route && location.pathname !== item.route) {
@@ -23,7 +27,7 @@ const FloatingNav = ({ activeId, onNavClick }) => {
   return (
     <div className="mt-10 hidden md:flex justify-center items-center backdrop-blur-md bg-white/70 dark:bg-neutral-900/70 border-2 border-gray-200 dark:border-neutral-800 rounded-3xl px-2 py-2 top-10 z-50 sticky transition-all duration-500 animate-nav delay-3">
       <div className="flex justify-between items-center gap-6 pl-2">
-        {navItems.map((item, index) => (
+        {visibleItems.map((item, index) => (
           <Fragment key={item.id}>
             <div className="group flex flex-col items-center gap-2 relative hover:scale-110 transition-all duration-200">
               <div
