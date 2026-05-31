@@ -3,7 +3,11 @@ import { FaGoogle } from "react-icons/fa";
 import FloatingNav from "../sections/FloatingNav";
 import MobileMenu from "../sections/MobileMenu";
 import ThemeToggle from "../components/ThemeToggle";
-import { handleSignIn, handleSignOut } from "../firebase/auth";
+import {
+  handleRedirectResult,
+  handleSignIn,
+  handleSignOut,
+} from "../firebase/auth";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import {
   createGuestbookEntry,
@@ -44,6 +48,19 @@ const Guestbook = () => {
 
     return () => unsubscribe();
   }, [auth]);
+
+  useEffect(() => {
+    const loadRedirectResult = async () => {
+      try {
+        await handleRedirectResult();
+      } catch (error) {
+        setAuthError("Sign in failed. Please try again.");
+        console.log("Error handling redirect result:", error);
+      }
+    };
+
+    loadRedirectResult();
+  }, []);
 
   useEffect(() => {
     const root = document.documentElement;
