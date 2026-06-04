@@ -16,34 +16,22 @@ const isMobileDevice = () =>
   /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
 const handleSignIn = async ({ forceRedirect = false } = {}) => {
-  try {
-    const shouldRedirect = forceRedirect || isMobileDevice();
-    if (shouldRedirect) {
-      await signInWithRedirect(auth, provider);
-      return null;
-    }
-    const result = await signInWithPopup(auth, provider);
-    return result.user;
-  } catch (error) {
-    throw error;
+  const shouldRedirect = forceRedirect || isMobileDevice();
+  if (shouldRedirect) {
+    await signInWithRedirect(auth, provider);
+    return null;
   }
+  const result = await signInWithPopup(auth, provider);
+  return result.user;
 };
 
 const handleRedirectResult = async () => {
-  try {
-    const result = await getRedirectResult(auth);
-    return result?.user || null;
-  } catch (error) {
-    throw error;
-  }
+  const result = await getRedirectResult(auth);
+  return result?.user || null;
 };
 
 const handleSignOut = async () => {
-  try {
-    await signOut(auth);
-  } catch (error) {
-    throw error;
-  }
+  await signOut(auth);
 };
 
 export { auth, provider, handleSignIn, handleSignOut, handleRedirectResult };
