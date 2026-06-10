@@ -152,7 +152,7 @@ const Portfolio = () => {
 
       <div className="mt-32 w-full md:w-[50%] bg-gray-300 dark:bg-neutral-800 h-[1px]"></div>
 
-      <WorkExperience />
+      {/* <WorkExperience /> */}
       <Projects />
       <MyServices />
       <Testimonials />
