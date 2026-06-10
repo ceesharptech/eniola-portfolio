@@ -25,7 +25,7 @@ const FloatingNav = ({ activeId, onNavClick }) => {
     }
   };
   return (
-    <div className="mt-10 hidden md:flex justify-center items-center backdrop-blur-md bg-white/70 dark:bg-neutral-900/70 border-2 border-gray-200 dark:border-neutral-800 rounded-3xl px-2 py-2 top-10 z-50 sticky transition-all duration-500 animate-nav delay-3">
+    <div className="mt-10 hidden md:flex justify-center items-center backdrop-blur-md bg-white/70 dark:bg-neutral-900/70 border-2 border-gray-200 dark:border-neutral-800 rounded-3xl px-2 py-2 top-10 z-40 sticky transition-all duration-500 animate-nav delay-3">
       <div className="flex justify-between items-center gap-6 pl-2">
         {visibleItems.map((item, index) => (
           <Fragment key={item.id}>

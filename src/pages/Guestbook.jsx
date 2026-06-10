@@ -368,7 +368,7 @@ const Guestbook = () => {
                       Signed in as {user.displayName || "Guest"}
                     </p>
                     <p className="text-xs text-gray-500 dark:text-gray-400">
-                      Ready to leave a note in the guestbook.
+                      Ready to leave a note
                     </p>
                   </div>
                 </div>
@@ -404,7 +404,7 @@ const Guestbook = () => {
         </section>
 
         {isModalOpen && (
-          <div className="fixed inset-0 z-40 flex items-center justify-center px-4">
+          <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
             <button
               type="button"
               className="absolute inset-0 bg-black/40 backdrop-blur-sm"
@@ -415,7 +415,7 @@ const Guestbook = () => {
               role="dialog"
               aria-modal="true"
               aria-labelledby="guestbook-modal-title"
-              className="relative z-10 w-full max-w-2xl rounded-3xl border border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 p-6 sm:p-8 shadow-2xl"
+              className="relative z-50 w-full max-w-2xl rounded-3xl border border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 p-6 sm:p-8 shadow-2xl"
             >
               <div className="flex items-start justify-between gap-4">
                 <div>
