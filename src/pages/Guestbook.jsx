@@ -5,9 +5,8 @@ import MobileMenu from "../sections/MobileMenu";
 import ThemeToggle from "../components/ThemeToggle";
 import {
   handleRedirectResult,
-  // handleSignIn,
+  handleSignIn,
   handleSignOut,
-  handleSignInRedirect,
 } from "../firebase/auth";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import {
@@ -288,15 +287,15 @@ const Guestbook = () => {
     }
   };
 
-  // const handleSignInClick = async () => {
-  //   setAuthError("");
-  //   try {
-  //     await handleSignIn();
-  //   } catch (error) {
-  //     console.error("Error signing in:", error);
-  //     setAuthError("Sign in failed. Please try again.");
-  //   }
-  // };
+  const handleSignInClick = async () => {
+    setAuthError("");
+    try {
+      await handleSignIn();
+    } catch (error) {
+      console.error("Error signing in:", error);
+      setAuthError("Sign in failed. Please try again.");
+    }
+  };
 
   const handleSignOutClick = async () => {
     setAuthError("");
@@ -342,7 +341,7 @@ const Guestbook = () => {
             <button
               type="button"
               className="mt-4 flex items-center justify-center gap-3 rounded-2xl border border-gray-200 dark:border-neutral-800 bg-white/80 dark:bg-neutral-900/80 px-6 py-3 text-sm font-semibold text-gray-800 dark:text-gray-100 shadow-sm transition-all duration-200 hover:scale-[1.01]"
-              onClick={handleSignInRedirect}
+              onClick={handleSignInClick}
             >
               <FaGoogle className="h-5 w-5 text-red-500" />
               Sign in with Google

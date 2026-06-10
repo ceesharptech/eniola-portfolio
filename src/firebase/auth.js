@@ -25,9 +25,9 @@ const handleSignIn = async ({ forceRedirect = false } = {}) => {
   return result.user;
 };
 
-const handleSignInRedirect = async () => {
-  await signInWithRedirect(auth);
-};
+// const handleSignInRedirect = async () => {
+//   await signInWithRedirect(auth);
+// };
 
 const handleRedirectResult = async () => {
   const result = await getRedirectResult(auth);
@@ -39,11 +39,4 @@ const handleSignOut = async () => {
   await signOut(auth);
 };
 
-export {
-  auth,
-  provider,
-  handleSignIn,
-  handleSignOut,
-  handleRedirectResult,
-  handleSignInRedirect,
-};
+export { auth, provider, handleSignIn, handleSignOut, handleRedirectResult };
