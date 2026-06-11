@@ -5,7 +5,8 @@ import MobileMenu from "./sections/MobileMenu";
 import IntroSection from "./sections/IntroSection";
 import CarouselSection from "./sections/CarouselSection";
 import AboutSection from "./sections/AboutSection";
-import WorkExperience from "./sections/WorkExperience";
+import SpotifyCurrentlyListening from "./sections/SpotifyCurrentlyListening";
+// import WorkExperience from "./sections/WorkExperience";
 import Projects from "./sections/Projects";
 import MyServices from "./sections/MyServices";
 import Testimonials from "./sections/Testimonials";
@@ -148,6 +149,7 @@ const Portfolio = () => {
 
       <CarouselSection />
       <AboutSection />
+      <SpotifyCurrentlyListening />
       <TechStackGrid />
 
       <div className="mt-32 w-full md:w-[50%] bg-gray-300 dark:bg-neutral-800 h-[1px]"></div>
