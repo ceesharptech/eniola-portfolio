@@ -93,7 +93,7 @@ const SpotifyCurrentlyListening = () => {
 
         <div className="flex flex-col flex-1 min-w-0 pr-4">
           <p className="text-xs text-gray-500 dark:text-gray-400 font-medium uppercase tracking-wider mb-1">
-            {isPlaying ? "Currently Listening" : "Spotify"}
+            {isPlaying ? "Currently Listening To" : "Spotify"}
           </p>
           {isPlaying && track ? (
             <>
@@ -117,7 +117,7 @@ const SpotifyCurrentlyListening = () => {
         </div>
 
         {isPlaying && (
-          <div className="hidden sm:flex items-center gap-[0.14rem] h-4 self-center ml-2">
+          <div className="flex items-center gap-[0.14rem] h-4 self-center ml-2 mr-2">
             <span className="w-1 h-full bg-[#1DB954] rounded-full animate-bounce [animation-delay:-0.2s]"></span>
             <span className="w-1 h-3/4 bg-[#1DB954] rounded-full animate-bounce [animation-delay:-0.4s]"></span>
             <span className="w-1 h-full bg-[#1DB954] rounded-full animate-bounce [animation-delay:-0.1s]"></span>

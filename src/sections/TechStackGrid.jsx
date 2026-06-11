@@ -56,7 +56,7 @@ const TechStackGrid = () => {
   };
 
   return (
-    <section className="mt-32 w-full md:max-w-[38rem]">
+    <section className="mt-20 md:mt-24 w-full md:max-w-[38rem]">
       <div className="flex flex-col items-center gap-4">
         <h2
           ref={headingRef}
