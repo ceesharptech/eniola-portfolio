@@ -26,13 +26,13 @@ const FloatingNav = ({ activeId, onNavClick }) => {
   };
   return (
     <div className="mt-10 hidden md:flex justify-center items-center backdrop-blur-md bg-white/70 dark:bg-neutral-900/70 border-2 border-gray-200 dark:border-neutral-800 rounded-3xl px-2 py-2 top-10 z-40 sticky transition-all duration-500 animate-nav delay-3">
-      <div className="flex justify-between items-center gap-6 pl-2">
+      <div className="flex justify-between items-center gap-6 pl-1">
         {visibleItems.map((item, index) => (
           <Fragment key={item.id}>
             <div className="group flex flex-col items-center gap-2 relative hover:scale-110 transition-all duration-200">
               <div
                 className="hidden group-hover:flex absolute top-0 left-0 right-0 bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700 px-4 py-2 rounded-xl
-              group-hover:translate-y-12 w-fit hover:cursor-pointer transition-all duration-300"
+                group-hover:translate-y-12 w-fit hover:cursor-pointer transition-all duration-300"
               >
                 <span className="text-xs text-gray-600 dark:text-gray-300 font-normal tracking-tighter">
                   {item.label}
@@ -42,7 +42,7 @@ const FloatingNav = ({ activeId, onNavClick }) => {
                 type="button"
                 className={`${
                   activeId === item.scrollId || location.pathname === item.route
-                    ? "py-2 px-3"
+                    ? "p-3"
                     : "p-3"
                 } hover:px-4 hover:bg-gray-100 dark:hover:bg-neutral-800 flex
               flex-col items-center justify-center rounded-xl transition-all duration-300 text-gray-700 dark:text-gray-100`}
@@ -50,10 +50,8 @@ const FloatingNav = ({ activeId, onNavClick }) => {
                 onClick={() => handleItemClick(item)}
               >
                 {item.icon}
-                {((item.scrollId && item.scrollId === activeId) ||
-                  (item.route && location.pathname === item.route)) && (
-                  <div className="mt-1 bg-gray-800 dark:bg-gray-200 h-1 w-1 rounded-full"></div>
-                )}
+                {(item.scrollId && item.scrollId === activeId) ||
+                  (item.route && location.pathname === item.route)}
               </button>
             </div>
             {index === 0 && (

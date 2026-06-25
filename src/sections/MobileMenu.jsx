@@ -92,22 +92,36 @@ const MobileMenu = ({ isOpen, onToggle, onClose, onNavClick, activeId }) => {
         }`}
       >
         <ul className="flex flex-col gap-2">
-          {visibleItems.map((item) => (
-            <li key={item.id}>
-              <button
-                type="button"
-                onClick={() => handleItemClick(item)}
-                className="flex items-center justify-start gap-3 py-3 px-3 rounded-xl hover:bg-gray-100 dark:hover:bg-neutral-800 transition-all duration-200 w-full text-gray-700 dark:text-gray-100"
-              >
-                {item.icon}
-                <span className="text-md font-normal">{item.label}</span>
-                {((item.scrollId && item.scrollId === activeId) ||
-                  (item.route && location.pathname === item.route)) && (
-                  <span className="ml-auto bg-gray-800 dark:bg-gray-200 h-1.5 w-1.5 rounded-full"></span>
-                )}
-              </button>
-            </li>
-          ))}
+          {visibleItems.map((item) => {
+            return item.id === "mail" ? (
+              <li key={item.id}>
+                <a href="mailto:eniolamusu1@gmail.com">
+                  <button
+                    type="button"
+                    className="flex items-center justify-start gap-3 py-3 px-3 rounded-xl hover:bg-gray-100 dark:hover:bg-neutral-800 transition-all duration-200 w-full text-gray-700 dark:text-gray-100"
+                  >
+                    {item.icon}
+                    <span className="text-md font-normal">{item.label}</span>
+                    {(item.scrollId && item.scrollId === activeId) ||
+                      (item.route && location.pathname === item.route)}
+                  </button>
+                </a>
+              </li>
+            ) : (
+              <li key={item.id}>
+                <button
+                  type="button"
+                  onClick={() => handleItemClick(item)}
+                  className="flex items-center justify-start gap-3 py-3 px-3 rounded-xl hover:bg-gray-100 dark:hover:bg-neutral-800 transition-all duration-200 w-full text-gray-700 dark:text-gray-100"
+                >
+                  {item.icon}
+                  <span className="text-md font-normal">{item.label}</span>
+                  {(item.scrollId && item.scrollId === activeId) ||
+                    (item.route && location.pathname === item.route)}
+                </button>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </div>
